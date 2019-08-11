@@ -1,4 +1,4 @@
-const Dev = require('../models/Dev');
+const Dev = require("../models/Dev");
 
 module.exports = {
   async store(req, res) {
@@ -13,7 +13,7 @@ module.exports = {
 
     if (!targetDev) {
       // se usuário alvo não existir
-      return res.status(400).json({ error: 'Liked dev does not exists!' });
+      return res.status(400).json({ error: "Liked dev does not exists!" });
     }
 
     // Verifico se o loggedDev ja existi na lista de likes do target
@@ -23,12 +23,12 @@ module.exports = {
       const targetSocket = req.connectedUsers[devId];
 
       // Se os usuarios estiverem conectados, aviso sobre ocorrencia de match
-      if(loggedSocket) {
-        req.io.to(loggedSocket).emit('match', targetDev);
+      if (loggedSocket) {
+        req.io.to(loggedSocket).emit("match", targetDev);
       }
-      
+
       if (targetSocket) {
-        req.io.to(targetSocket).emit('match', loggedDev);
+        req.io.to(targetSocket).emit("match", loggedDev);
       }
     }
 
@@ -38,5 +38,5 @@ module.exports = {
     await loggedDev.save();
 
     return res.json(loggedDev);
-  },
+  }
 };

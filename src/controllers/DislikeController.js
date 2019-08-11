@@ -1,4 +1,4 @@
-const Dev = require('../models/Dev');
+const Dev = require("../models/Dev");
 
 module.exports = {
   async store(req, res) {
@@ -12,7 +12,7 @@ module.exports = {
 
     if (!targetDev) {
       // se usuário alvo não existir
-      return res.status(400).json({ error: 'Disliked dev does not exists!' });
+      return res.status(400).json({ error: "Disliked dev does not exists!" });
     }
 
     // se o desenvolvedor existir
@@ -21,5 +21,5 @@ module.exports = {
     await loggedDev.save();
 
     return res.json(loggedDev);
-  },
+  }
 };
